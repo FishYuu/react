@@ -1,0 +1,8 @@
+是JavaScriptXLM的简写，表示在JavaScript代码中写XML(HTML)格式的代码
+优势：声明式语法更加直观；与HTML结构相同，降低了学习成本；提升开发效率
+
+使用步骤
+1.使用JSX语法创建react元素
+  const title = <h1>Hello JSX</h1>
+2.使用ReactDOM.render()方法渲染react元素到页面中
+  ReactDOM.render(title, doucument.getElementById('root'))
