@@ -1,8 +1,48 @@
+JSX是React的核心内容，声明式的体现
 是JavaScriptXLM的简写，表示在JavaScript代码中写XML(HTML)格式的代码
 优势：声明式语法更加直观；与HTML结构相同，降低了学习成本；提升开发效率
+
+脚手架中可以使用JSX语法：
+JSX不是标准的ECMAScript语法 ，它是ECMAScript语法扩展
+需要使用babel编译处理后，才能在浏览器环境中使用
+create-react-app脚手架中已经默认有该配置，无需手动安装
 
 使用步骤
 1.使用JSX语法创建react元素
   const title = <h1>Hello JSX</h1>
 2.使用ReactDOM.render()方法渲染react元素到页面中
   ReactDOM.render(title, doucument.getElementById('root'))
+
+注意点
+1.React元素的属性名使用驼峰命名法
+2.特殊属性名：class=>className,for=>htmlFpr,tabindex=>tabIndex
+3.没有子节点的React元素可以用/>结束
+4.推荐：使用小括号包裹JSX,从而便面JS中的自动插入分号陷阱
+  const dv = ( <div>Hello JSX</div> )
+  
+逻辑与运算符
+  const loading = false
+  const laodData = () => {
+    return isLoading && (<div>loading...</div>)
+  } // 不会加载div
+  
+列表渲染
+  注意: 如果要渲染一组数据，应该使用数组的map()方法
+        渲染列表时应该添加key属性，key属性的值要保证唯一
+        map()遍历谁，就给谁添加key属性
+        尽量避免使用索引号作为key
+  const list = (
+    <ul>
+      {songList.map(item => {
+        <li key={item.id}>{item.name}</li>
+      })
+    </ul>
+  )
+  
+样式处理
+  1.行内样式
+    style={ {color： 'red', backgroundColor: 'skybule'} } // 样式为对象
+  2.类名--className(推荐)
+    import ‘样式文件夹路径’
+    <div className="title"></div>
+    
