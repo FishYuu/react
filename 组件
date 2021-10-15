@@ -1,1 +1,80 @@
-GRE
+创建方式
+  1.使用函数创建组件
+    约定：函数名称必须以大写字母开头
+          函数组件必须有返回值，表示该组件的结构，如果返回值为null，表示不渲染任何内容
+          组件名称必须以答谢字母开头，React据此区分组件和普通的React元素
+    渲染函数组件：用函数名作为组件标签名
+                 组件标签可以为单标签
+    const Hello = () => <div>这是我的第一个组件</div>
+    ReactDOM.render(<Hello/>, document.getElementById('root'))
+    
+   2.使用类创建组件：使用es6的class创建的组件
+     约定：类明湖曾必须以大写字母开头
+           类组件应该继承React.Component父类，从而使用父类中提供的方法或属性
+           类组件必须提供render()方法
+           render()方法必须有返回值，表示该组件的结构
+           // 创建类组件
+              class Hello extends React.Component {
+                render() {
+                  retrun (
+                    <div>这是我的第一个组件</div>
+                  )
+                }
+              }
+           // 渲染组件
+              ReactDOM.render(<Hello/>, document.getElementById('root'))
+   
+   3.抽离为独立JS文件
+     创建Hello.js
+     在Hello.js导入React
+     创建组件（函数或类）
+     在index.js中导入Hello组件
+     渲染组件
+     // Hello.js
+     import React from 'react'
+     class Hello extends React.Component {
+                render() {
+                  retrun (
+                    <div>这是我的第一个抽离到js文件中的组件</div>
+                  )
+                }
+              }
+      export default Hello
+      // index.js
+       import React from 'react'
+       import ReactDOM from 'react-dom'
+       import Hello from 'Hello路径页面'
+       ReactDOM.render(<Hello/>, document.getElementById('root'))
+
+
+ 事件处理
+  语法：on+事件名称=（事件处理程序） onClick = {() => {}}
+  采用驼峰命名法
+  //事件处理程序
+  class Hello extends React.Component {
+    handleClick() {}
+    render() {
+      return {
+        <button onClick={this.handleClick}></button>
+      }
+    }
+  }
+  // 通过函数组件绑定事件
+  function App() {
+    function handleClick() {}
+    return (
+      <button onClick={handleClick}></button>
+    )
+  }
+  
+  事件对象：
+    可以通过事件处理程序的参数获取到事件对象
+    React中的事件对象叫做：合成对象（对象）
+    合成对象：兼容所有浏览器，无需担心跨浏览器兼容性问题
+    // 阻止浏览器的默认行为
+    e.preventDefault()
+    
+   有状态组件（类组件）&无状态组件（函数组件）
+    状态（state）即数据
+    函数组件没有自己的状态，只负责数据显示（静）
+    类组件有自己的状态，负责更新UI,让页面‘动’起来
