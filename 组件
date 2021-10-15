@@ -78,3 +78,9 @@
     状态（state）即数据
     函数组件没有自己的状态，只负责数据显示（静）
     类组件有自己的状态，负责更新UI,让页面‘动’起来
+    
+   state&setState
+   state
+    class App extends React.Component {
+      
+    }
