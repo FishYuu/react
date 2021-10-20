@@ -81,3 +81,26 @@
     class App extends React.Component {
       
     }
+    
+    
+   表单处理
+    受控组件
+     多表单元素优化步骤：
+      1.给表单元素添加name属性，名称与state相同
+      2.根据表单元素类型
+      3.在change事件处理程序中通过【name】来修改对应的state
+      // 根据表单元素来获取值
+      const value = target.type === 'checkbox' ? target.checked : traget.value
+      // 根据name设置对应的state
+      this.setState({[name]: value})
+      <input type="text" name="txt" value={this.state.txt} onChange={this.handleForm}/>
+     非受控组件
+      1.调用React.createRef()方法穿件一个ref对象
+        constructor(){
+          super()
+          this.txtRef = React.createRef()
+        }
+      2.将创建好的ref对象添加到文本框中
+        <input type="text" ref={this.txtRef}/>
+      3.通过ref对象获取到文本框中
+        console.log(this.txtRed.current.value)
