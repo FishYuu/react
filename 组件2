@@ -35,5 +35,51 @@ props
       return <button onclick={() => props.onIncrement()}></button>
     }
     
-  content
-    使用：
+  context
+    作用：跨组件传递数据（比如：主题，语言）
+    使用步骤：
+      1.调用React.createContent()创建Provider(提供数据)和Consumer（消费数据）两个组件
+        const {Provider, Consumer} = React.createContent()
+      2.使用Provider组件作为父节点
+        <Provider>
+          <div>
+            <child1/>
+          </div>
+        </Provider>
+     3.设置value属性，表示要传递的数据
+     4.调用Consumer组件接收数据
+        <Consumer>
+          {data => <span>{data}</span>}
+        </Consumer>
+     示范案例
+       const {Provider, Consumer} = React.createContent()
+       render() {
+        return （
+          <Provider value="pink">
+            <div>
+              <Node/>
+            </div>
+          </Provider>
+        ）
+       }
+       const Node = props => {
+        return(
+          <div><subNode/></div>
+        )
+       }
+       const subNode = props => {
+        return(
+          <div><child/></div>
+        )
+       }
+      const child = props => {
+        return(
+          <div>
+            <Consumer>
+            {
+              data => <span>我是子节点 {data}</span>
+            }
+            </Consumer>
+          </div>
+        )
+       }
