@@ -1,0 +1,39 @@
+props
+  组件是封闭的，要就收外部数据应该通过props来实现
+  作用：接受传递转给组件的数据
+  传递数据：函数组件通过参数props接受数据，类组件通过this.props接受数据
+  props是只读对象，只能读取属性的值，无法修改对象
+  注意：使用类组件时，如果写了构造函数，应该将props传递给super(),否则，无法在构造函数中获取props!
+  特点：
+  class Hello extends React.Component {
+                render() {
+                  retrun (
+                    <div>这是我的第一个组件</div>
+                  )
+                }
+              }
+  ReactDOM.render(<Hello name="jack" age={19}/>, document.getElementById('root'))
+  
+  
+  兄弟组件
+    将共享状态提升到最近的公共父组件中，有公共父组件管理这个状态
+    思想：状态提升
+    公共父组件职责：1.提供共享状态 2.提供操作共享状态的方法
+    要通讯的子组件只需要通过props接收状态或操作状态的方法
+    render() {
+      return {
+        <div>
+          <child1 count={this.state.count}/>
+          <child2 onIncrement={this.onIncrement}/>
+        </div>
+      }
+    }
+    const child1 = props => {
+      return <h1>计数器：{props.count}</h1>
+    }
+    const child2 = props => {
+      return <button onclick={() => props.onIncrement()}></button>
+    }
+    
+  content
+    使用：
