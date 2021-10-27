@@ -83,5 +83,61 @@ props
           </div>
         )
        }
-       
+      
+     children属性
+        表示组件标签的子节点。当组件标签有子节点时，props就会有该属性
+        children属性与普通的props一样，值可以是任意值（文本、React元素、组件、甚至是函数）
+        const test = () => <button>按钮</button>
+        const Hello = props => {
+          props.children()
+          return (
+            <div>
+              <h1>组件标签的子节点：{props.children}</h1>
+            </div>
+          )
+        }
+        ReactDOM.render(<Hello>
+          <p>我是子节点</p>
+          {
+              <test/>
+              () => console.log('函数子节点')
+          }
+        </Hello>, document.getElementById('root'))
      
+     props
+      对组件来说，props是外来的，无法保证组件使用者传入什么格式的数据
+      如果传入的数据格式不对，可能会导致组件内部报错
+      props校验：
+        允许在创建组件的时候，就指定props的类型、格式等
+        作用：捕获使用组件时因为props导致的错误，给出明确的错误提示，增加组件的健壮性
+        使用步骤：
+          1.安装包props-types
+          2.导入props-types包
+          3.使用组件名propTypes={}来给组件的props添加校验规则
+          4.校验规则通过propTypes对象来指定
+      import propTypes from 'props-types'
+      const App = props => {
+        const arr = props.colors
+        const lis = arr.map((item, index) => <li key={index}>{item}</li>)
+        return <ul>{lis}</ul>
+      }
+      // 添加props校验
+      App.propTypes = {
+        colors: propTypes.array // 指定数据类型
+      }
+      ReactDOM.render(<App colors={['red','black']}/>, document.getElementById('root'))
+      
+        约束规则
+          1.常见类型：array,bool,func,number,object,string
+          2.React元素类型：element
+          3.必填项：isRequired
+          4.特定结构的对象:shape()
+          // 常见类型
+          optionalFunc: propTypes.func
+          // 必选
+          optionalFunc: propTypes.func.isRequired
+          // 特定结构的对象
+          optionalObjectWidthShape: propTypes.shape({
+            color: propTypes.string,
+            fontSize: propTypes.number
+          })
