@@ -14,7 +14,15 @@
     componentDidMount
       触发时机：组件挂载（完成DOM渲染）后
       作用: 发送网络请求，DOM操作
-   2.
+   2.更新时（更新阶段）
+     顺序: render()
+           componentDidUpdate()
+             触发时机：组件更新（完成DOM渲染）后
+             作用：发送网络请求，DOM操作。注意：如果要setState（）必须放在一个if条件中
+     执行时机：1.setState()
+              2.forceUpdate()
+              3.组件接收新的props
+   3.
    class App extends React.Compnet {
       constructor(props) {
         super(props)
@@ -24,6 +32,13 @@
         }
       }
       componentDidMount() {
+      }
+      componentDidUpdate（preprops） {
+        // 比较更新前后的props是否相同，来决定是否重新渲染组件
+        // preprops: 上一次的props;this.props: 当前的props
+        if （preprops.count !== this.props.count）{
+          this.setState({})
+        }
       }
       render() {
         return ()
