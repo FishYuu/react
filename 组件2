@@ -107,6 +107,17 @@ props
      props
       对组件来说，props是外来的，无法保证组件使用者传入什么格式的数据
       如果传入的数据格式不对，可能会导致组件内部报错
+      默认值
+        const App = props => {
+          console.log(props)
+          return {
+            <div>此处展示props默认值： {props.pageSize}</div>
+          }
+        }
+        // 添加props默认值
+        App.defaultProps = {
+          pagesize: 10
+        }
       props校验：
         允许在创建组件的时候，就指定props的类型、格式等
         作用：捕获使用组件时因为props导致的错误，给出明确的错误提示，增加组件的健壮性
