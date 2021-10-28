@@ -1,0 +1,31 @@
+意义：组件的生命周期有助于理解组件的运行方式，完成更复杂的组件功能，分析组件错误原因等
+组件的生命周期：组件从被创建到挂在到页面中运行，再到组件不用时卸载的过程
+
+生命周期的三个阶段
+  1.创建时（挂载阶段）
+    执行时机：组件创建时（页面加载时）
+    顺序：constructor(),render(),componentDidMount()
+    constructor
+      触发时机：创建组件时，最先执行
+      作用：初始化state,为时间处理程序绑定this
+    render
+      触发时机：每次组件渲染都会触发
+      作用: 渲染UI(注意：不能调用setState())
+    componentDidMount
+      触发时机：组件挂载（完成DOM渲染）后
+      作用: 发送网络请求，DOM操作
+   2.
+   class App extends React.Compnet {
+      constructor(props) {
+        super(props)
+        // 初始化state
+        this.state = {
+         count: 0
+        }
+      }
+      componentDidMount() {
+      }
+      render() {
+        return ()
+      }
+    }
