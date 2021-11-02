@@ -1,0 +1,3 @@
+组件复用
+  1.state 2.操作state的方法（组件状态逻辑）
+  两种方式：1.render props模式；2.高阶组件（HOC）
