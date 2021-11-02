@@ -22,7 +22,10 @@
      执行时机：1.setState()
               2.forceUpdate()
               3.组件接收新的props
-   3.
+   3.卸载时（卸载阶段）
+     componentWillUnmount()
+       触发时机：组件卸载（从页面中消失）
+       作用：执行清理工作（比如：清理定时器等）
    class App extends React.Compnet {
       constructor(props) {
         super(props)
