@@ -1,3 +1,52 @@
 组件复用
   1.state 2.操作state的方法（组件状态逻辑）
   两种方式：1.render props模式；2.高阶组件（HOC）
+
+使用步骤
+  1.创建Mouse组件，在组件汇总提供复用的状态逻辑代码（1.状态；2.操作状态的方法）
+  2.将要复用的状态作为props.render(state)方法的参数，暴露到组件外部 
+    => 推荐：使用children代替render属性 props.children(state)
+  3.使用props.render()的返回值作为要渲染的内容
+  class Mouse extends React.Compoment{
+    state = {
+      x:0,
+      y:0
+    }
+    handleMouseMove = e => {
+      this.setState({
+        x: e.clinetX,
+        y: e.clinetY
+      })
+    }
+    // 监听鼠标移动事件
+    componentDidMount() {
+      window.addEventListener('mousemove', this.handleMouseMove)
+    }
+    render() {
+      <!-- return null -->
+      <!-- return this.props.render(this.state) -->
+      return this.props.children(this.state)
+  }
+
+  class App extends React.Compoment{
+    render() {
+      return(
+        <div>
+          <h1>render</h1>
+          // mouse = this.state
+          <!-- <Mouse render={(mouse) =>{
+            return <p>{mouse.x}</p>  
+          }}/> -->
+          <Mouse>
+            {
+              mouse => {
+                return(
+                  <image/>
+                )
+              }
+            }
+          </Mouse>
+        </div>
+      )
+    }
+  }
